@@ -1,26 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    color-scheme: light;
+    --ivory: #faf9f6;
+    --pine: #14362b;
+    --brass: #b08d57;
+    --text: #26352f;
+    --body: "Plus Jakarta Sans", sans-serif;
+    --display: "Playfair Display", Georgia, serif;
+}
+
 body {
-    padding: 24px;
+    min-height: 100vh;
+    padding: clamp(18px, 4vw, 48px);
+    background:
+        linear-gradient(90deg, transparent 49.9%, #14362b08 50%, transparent 50.1%),
+        var(--ivory);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.65;
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: clamp(16px, 2vw, 28px);
+    max-width: 1180px;
+    margin-inline: auto;
     margin-top: 24px;
 }
 
 .practice-card {
     flex: 1 1 280px;
-    padding: 20px;
-    border: 1px solid var(--border, #b8c9c3);
-    border-radius: 8px;
-    background-color: var(--surface, white);
+    padding: clamp(20px, 3vw, 32px);
+    border: 1px solid #14362b24;
+    border-top: 3px solid var(--brass);
+    border-radius: 3px;
+    background-color: #fffefa;
+    box-shadow: 0 12px 30px #14362b0d;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.practice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px #14362b17;
+}
+
+.practice-card h2,
+h1 {
+    color: var(--pine);
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.75rem);
 }
 
 .practice-card h2,
@@ -33,7 +74,10 @@ main {
 }
 
 .Dodge {
-    background-color: var(--accent, red);
+    background-color: var(--pine);
+    background-image:
+        linear-gradient(135deg, transparent 48%, #b08d5738 49%, #b08d5738 51%, transparent 52%);
+    background-size: 26px 26px;
     width: 100%;
     max-width: 700px;
     min-height: 300px;
@@ -41,16 +85,36 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent-text, white);
-    font-size: 1.5rem;
+    color: var(--ivory);
+    font: 500 clamp(1.25rem, 3vw, 2rem) var(--display);
+    box-shadow: inset 0 0 0 1px #ffffff24, 0 18px 36px #14362b20;
+}
+
+a,
+button {
+    accent-color: var(--brass);
+}
+
+:focus-visible {
+    outline: 3px solid var(--brass);
+    outline-offset: 4px;
 }
 
 @media (max-width: 480px) {
     body {
-        padding: 16px;
+        padding: 18px 14px;
     }
 
     .Dodge {
-        min-height: 180px;
+        min-height: clamp(160px, 48vw, 220px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
